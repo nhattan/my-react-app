@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
-class App extends Component {
+
+const App = () => (
+  <Amount>
+    <Pound amount={amount} />
+    <Euro amount={amount} />
+  </Amount>
+);
+
+class Amount extends Component {
   constructor(props) {
     super(props);
 
@@ -19,14 +27,16 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Amount
-          amount={this.state.amount}
-          onIncrement={this.onIncrement}
-          onDecrement={this.onDecrement}
-        />
+        <span>US Dollar: {this.state.amount} </span>
 
-        <Euro amount={this.state.amount} />
-        <Pound amount={this.state.amount} />
+        <button type="button" onClick={this.onIncrement}>
+          +
+        </button>
+        <button type="button" onClick={this.onDecrement}>
+          -
+        </button>
+
+        {this.props.children}
       </div>
     );
   }
@@ -35,18 +45,4 @@ class App extends Component {
 const Euro = ({ amount }) => <p>Euro: {amount * 0.86}</p>;
 
 const Pound = ({ amount }) => <p>Pound: {amount * 0.76}</p>;
-
-const Amount = ({ amount, onIncrement, onDecrement }) => (
-  <div>
-    <span>US Dollar: {amount} </span>
-
-    <button type="button" onClick={onIncrement}>
-      +
-    </button>
-    <button type="button" onClick={onDecrement}>
-      -
-    </button>
-  </div>
-);
-
 export default App;
