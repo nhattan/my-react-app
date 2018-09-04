@@ -1,20 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+const App = () => <Amount />;
 
-class App extends Component {
+class Amount extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      amount: 0,
+    };
+  }
+
+  onIncrement = () => {
+    this.setState(state => ({amount: state.amount = state.amount + 1}));
+  }
+
+  onDecrement = () => {
+    this.setState(state => ({amount: state.amount = state.amount - 1}));
+  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <span>US Dollar: {this.state.amount} </span>
+
+        <button type="button" onClick={this.onIncrement}>
+          +
+        </button>
+        <button type="button" onClick={this.onDecrement}>
+          -
+        </button>
       </div>
-    );
+    )
   }
 }
 
