@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 
 const App = () => (
-  <Amount>
-    {amount => (
+  <Amount
+    render_converter={amount => (
       <div>
+        <h1>My Currency Converter</h1>
         <Pound amount={amount} />
         <Euro amount={amount} />
       </div>
     )}
-  </Amount>
+  />
 );
 class Amount extends Component {
   constructor(props) {
@@ -28,7 +29,6 @@ class Amount extends Component {
   };
 
   render() {
-    console.log(this.props.children)
     return (
       <div>
         <span>US Dollar: {this.state.amount} </span>
@@ -40,7 +40,7 @@ class Amount extends Component {
           -
         </button>
 
-        {this.props.children(this.state.amount)}
+        {this.props.render_converter(this.state.amount)}
       </div>
     );
   }
